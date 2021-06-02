@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Formulario from './Formulario'
+import ListaEsportes from './ListaEsportes'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <>
+            <Container>
+                <Row className="mt-5">
+                    <Col>
+                        <h3 className="mb-3">Adicionar um esporte</h3>
+                        <Formulario onSubmit={console.log} />
+                    </Col>
+
+                    <Col>
+                        <h3 className="mb-3">Esportes adicionados</h3>
+                        <ListaEsportes />
+                    </Col>
+                </Row>
+            </Container>
+        </>
+    )
 }
 
-export default App;
+export default App
