@@ -1,15 +1,20 @@
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { useState } from 'react'
+import axios from 'axios'
 
-function Formulario({ onSubmit }) {
-    const [dadosFormulario, setDadosFormulario] = useState({
+function Formulario() {
+    const estadoInicialFormulario = {
         modalidade: '',
         tipo: '',
         distancia: 0,
         sexo: '',
         local: '',
-    })
+    }
+
+    const [dadosFormulario, setDadosFormulario] = useState(
+        estadoInicialFormulario
+    )
 
     const formularioInvalido = Object.keys(dadosFormulario).some(
         (campo) => !dadosFormulario[campo]
@@ -21,16 +26,18 @@ function Formulario({ onSubmit }) {
             [nomeCampo]: e.target.value,
         }))
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        axios
+            .post('http://localhost:3001/esporte', dadosFormulario)
+            .then(() => setDadosFormulario(estadoInicialFormulario))
+            .catch(console.log)
+    }
+
     return (
         <>
-            <Form
-                className="formulario"
-                onSubmit={(e) => {
-                    // TODO: Verificar por que não funciona.
-                    e.preventDefault()
-                    onSubmit(dadosFormulario)
-                }}
-            >
+            <Form className="formulario" onSubmit={handleSubmit}>
                 <Form.Group>
                     <Form.Label>Modalidade</Form.Label>
                     <Form.Control

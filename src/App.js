@@ -2,21 +2,20 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Formulario from './Formulario'
-import ListaEsportes from './ListaEsportes'
+import TabelaEsportes from './TabelaEsportes'
 
 function App() {
     return (
         <>
             <Container>
                 <Row className="mt-5">
-                    <Col>
+                    <Col md={5}>
                         <h3 className="mb-3">Adicionar um esporte</h3>
-                        <Formulario onSubmit={console.log} />
+                        <Formulario />
                     </Col>
 
                     <Col>
-                        <h3 className="mb-3">Esportes adicionados</h3>
-                        <ListaEsportes />
+                        <TabelaEsportes />
                     </Col>
                 </Row>
             </Container>
